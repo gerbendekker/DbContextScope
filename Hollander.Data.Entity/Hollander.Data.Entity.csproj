@@ -7,8 +7,8 @@
     <ProjectGuid>{4830BAFD-4163-473E-B00F-65F274AC165F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mehdime.Entity</RootNamespace>
-    <AssemblyName>Mehdime.Entity</AssemblyName>
+    <RootNamespace>Hollander.Data.Entity</RootNamespace>
+    <AssemblyName>Hollander.Data.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -48,19 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\AmbientContextSuppressor.cs" />
-    <Compile Include="Implementations\AmbientDbContextLocator.cs" />
-    <Compile Include="Implementations\DbContextCollection.cs" />
-    <Compile Include="Implementations\DbContextReadOnlyScope.cs" />
-    <Compile Include="Implementations\DbContextScope.cs" />
-    <Compile Include="Implementations\DbContextScopeFactory.cs" />
-    <Compile Include="Enums\DbContextScopeOption.cs" />
-    <Compile Include="Interfaces\IAmbientDbContextLocator.cs" />
-    <Compile Include="Interfaces\IDbContextCollection.cs" />
-    <Compile Include="Interfaces\IDbContextFactory.cs" />
-    <Compile Include="Interfaces\IDbContextReadOnlyScope.cs" />
-    <Compile Include="Interfaces\IDbContextScope.cs" />
-    <Compile Include="Interfaces\IDbContextScopeFactory.cs" />
+    <Compile Include="AmbientContextSuppressor.cs" />
+    <Compile Include="AmbientDbContextLocator.cs" />
+    <Compile Include="DbContextCollection.cs" />
+    <Compile Include="DbContextFactory.cs" />
+    <Compile Include="DbContextReadOnlyScope.cs" />
+    <Compile Include="DbContextScope.cs" />
+    <Compile Include="DbContextScopeFactory.cs" />
+    <Compile Include="Contracts\DbContextScopeOption.cs" />
+    <Compile Include="Contracts\IAmbientDbContextLocator.cs" />
+    <Compile Include="Contracts\IDbContextCollection.cs" />
+    <Compile Include="Contracts\IAmbientDbContextFactory.cs" />
+    <Compile Include="Contracts\IDbContextReadOnlyScope.cs" />
+    <Compile Include="Contracts\IDbContextScope.cs" />
+    <Compile Include="Contracts\IDbContextScopeFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

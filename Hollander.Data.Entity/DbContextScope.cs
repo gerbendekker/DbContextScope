@@ -30,15 +30,15 @@ namespace Mehdime.Entity
 
         public IDbContextCollection DbContexts { get { return _dbContexts; } }
 
-        public DbContextScope(IDbContextFactory dbContextFactory = null) :
+        public DbContextScope(IAmbientDbContextFactory dbContextFactory = null) :
             this(joiningOption: DbContextScopeOption.JoinExisting, readOnly: false, isolationLevel: null, dbContextFactory: dbContextFactory)
         {}
 
-        public DbContextScope(bool readOnly, IDbContextFactory dbContextFactory = null)
+        public DbContextScope(bool readOnly, IAmbientDbContextFactory dbContextFactory = null)
             : this(joiningOption: DbContextScopeOption.JoinExisting, readOnly: readOnly, isolationLevel: null, dbContextFactory: dbContextFactory)
         {}
 
-        public DbContextScope(DbContextScopeOption joiningOption, bool readOnly, IsolationLevel? isolationLevel, IDbContextFactory dbContextFactory = null)
+        public DbContextScope(DbContextScopeOption joiningOption, bool readOnly, IsolationLevel? isolationLevel, IAmbientDbContextFactory dbContextFactory = null)
         {
             if (isolationLevel.HasValue && joiningOption == DbContextScopeOption.JoinExisting)
                 throw new ArgumentException("Cannot join an ambient DbContextScope when an explicit database transaction is required. When requiring explicit database transactions to be used (i.e. when the 'isolationLevel' parameter is set), you must not also ask to join the ambient context (i.e. the 'joinAmbient' parameter must be set to false).");

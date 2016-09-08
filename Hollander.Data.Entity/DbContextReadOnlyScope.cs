@@ -15,15 +15,15 @@ namespace Mehdime.Entity
 
         public IDbContextCollection DbContexts { get { return _internalScope.DbContexts; } }
 
-        public DbContextReadOnlyScope(IDbContextFactory dbContextFactory = null)
+        public DbContextReadOnlyScope(IAmbientDbContextFactory dbContextFactory = null)
             : this(joiningOption: DbContextScopeOption.JoinExisting, isolationLevel: null, dbContextFactory: dbContextFactory)
         {}
 
-        public DbContextReadOnlyScope(IsolationLevel isolationLevel, IDbContextFactory dbContextFactory = null)
+        public DbContextReadOnlyScope(IsolationLevel isolationLevel, IAmbientDbContextFactory dbContextFactory = null)
             : this(joiningOption: DbContextScopeOption.ForceCreateNew, isolationLevel: isolationLevel, dbContextFactory: dbContextFactory)
         { }
 
-        public DbContextReadOnlyScope(DbContextScopeOption joiningOption, IsolationLevel? isolationLevel, IDbContextFactory dbContextFactory = null)
+        public DbContextReadOnlyScope(DbContextScopeOption joiningOption, IsolationLevel? isolationLevel, IAmbientDbContextFactory dbContextFactory = null)
         {
             _internalScope = new DbContextScope(joiningOption: joiningOption, readOnly: true, isolationLevel: isolationLevel, dbContextFactory: dbContextFactory);
         }

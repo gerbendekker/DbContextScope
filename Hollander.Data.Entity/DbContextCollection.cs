@@ -32,14 +32,14 @@ namespace Mehdime.Entity
         private Dictionary<Type, DbContext> _initializedDbContexts;
         private Dictionary<DbContext, DbContextTransaction> _transactions; 
         private IsolationLevel? _isolationLevel;
-        private readonly IDbContextFactory _dbContextFactory;
+        private readonly IAmbientDbContextFactory _dbContextFactory;
         private bool _disposed;
         private bool _completed;
         private bool _readOnly;
 
         internal Dictionary<Type, DbContext> InitializedDbContexts { get { return _initializedDbContexts; } }
 
-        public DbContextCollection(bool readOnly = false, IsolationLevel? isolationLevel = null, IDbContextFactory dbContextFactory = null)
+        public DbContextCollection(bool readOnly = false, IsolationLevel? isolationLevel = null, IAmbientDbContextFactory dbContextFactory = null)
         {
             _disposed = false;
             _completed = false;
@@ -64,7 +64,7 @@ namespace Mehdime.Entity
                 // First time we've been asked for this particular DbContext type.
                 // Create one, cache it and start its database transaction if needed.
                 var dbContext = _dbContextFactory != null
-                    ? _dbContextFactory.CreateDbContext<TDbContext>()
+                    ? _dbContextFactory.Create<TDbContext>()
                     : Activator.CreateInstance<TDbContext>();
 
                 _initializedDbContexts.Add(requestedType, dbContext);
